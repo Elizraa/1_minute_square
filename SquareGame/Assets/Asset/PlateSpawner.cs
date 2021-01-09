@@ -7,6 +7,7 @@ public class PlateSpawner : MonoBehaviour
     public Vector3[] postitionToSpawn;
     public GameObject[] plateToSpawn;
     public Transform player;
+    public GameObject[] reverse;
 
     private void Start()
     {
@@ -54,6 +55,25 @@ public class PlateSpawner : MonoBehaviour
                 for (int i = 0; i < firstSpawn.Length; i++)
                 {
                     GameManager.gameManager.plateExits[i] = Instantiate(plateToSpawn[firstSpawn[i]], postitionToSpawn[i], Quaternion.identity);
+                    if(StateManager.state.spawnObstacle && firstSpawn[i] < 6)
+                    {
+                        int itemToSpawn;
+                        if (StateManager.state.reversedControl) {
+                            itemToSpawn = 1;
+                        }
+                        else if (StateManager.state.reversedDeathCondition)
+                        {
+                            itemToSpawn = 0;
+                        }
+                        else
+                        {
+                            itemToSpawn = Random.Range(0, 2);
+                        }
+                        GameObject item = Instantiate(reverse[itemToSpawn], GameManager.gameManager.plateExits[i].transform);
+                        if (firstSpawn[i] > 3) item.transform.localPosition = new Vector2(0f, -3f);
+                        else item.transform.localPosition = new Vector2(0f, 3f);
+                        StateManager.state.spawnObstacle = false;
+                    } 
                 }
             }
         }

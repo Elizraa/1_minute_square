@@ -50,9 +50,10 @@ public class GameManager : MonoBehaviour
             StateManager.state.enableInput = false;
             return;
         }
-        
         scoreText.text = (++StateManager.state.score).ToString();
-        if (StateManager.state.score == 9) StateManager.state.spawnFour = true;
-        else if (StateManager.state.score == 19) StateManager.state.spawnMoreVarians = true;
+        if (StateManager.state.score == 10) StateManager.state.spawnFour = true;
+        else if (StateManager.state.score == 20) StateManager.state.spawnMoreVarians = true;
+        else if (StateManager.state.score == 30) StateManager.state.spawnObstacle = true;
+        else if (StateManager.state.score == 40) StateManager.state.spawnObstacle = true;
     }
 }

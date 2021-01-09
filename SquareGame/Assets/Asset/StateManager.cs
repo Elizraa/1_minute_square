@@ -5,7 +5,7 @@ using UnityEngine;
 public class StateManager : MonoBehaviour
 {
     public static StateManager state;
-    public bool spawnFour,spawnCoins,spawnObstacle,reversedControl,reversedDeathCondition, spawnMoreVarians;
+    public bool spawnFour,spawnCoins,spawnObstacle,reversedControl,reversedDeathCondition, nextInputAbleReverse, spawnMoreVarians, startTimer;
     public bool enableInput = true;
     public int score = 0;
     // Start is called before the first frame update
