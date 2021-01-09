@@ -43,8 +43,18 @@ public class PlateSpawner : MonoBehaviour
             }
             else
             {
-                int[] firstSpawn = { Random.Range(2,6), Random.Range(2, 6), Random.Range(6, 10), Random.Range(6, 10) };
-                if (StateManager.state.score > 30) firstSpawn[1] = Random.Range(6, 10);
+                int[] firstSpawn = new int[4];
+                if (!StateManager.state.nextInputAbleReverse)
+                {
+                    int[] temp = { Random.Range(2, 6), Random.Range(2, 6), Random.Range(6, 10), Random.Range(6, 10) };
+                    firstSpawn = temp;
+                    if (StateManager.state.score > 30) firstSpawn[1] = Random.Range(6, 10);
+                }
+                else
+                {
+                    int[] temp = { Random.Range(2, 6), Random.Range(2, 6), Random.Range(2, 6), Random.Range(6, 10) };
+                    firstSpawn = temp;
+                }
                 for (int t = 0; t < firstSpawn.Length; t++)
                 {
                     int tmp = firstSpawn[t];
@@ -55,27 +65,36 @@ public class PlateSpawner : MonoBehaviour
                 for (int i = 0; i < firstSpawn.Length; i++)
                 {
                     GameManager.gameManager.plateExits[i] = Instantiate(plateToSpawn[firstSpawn[i]], postitionToSpawn[i], Quaternion.identity);
-                    if(StateManager.state.spawnObstacle && firstSpawn[i] < 6)
+                    if(StateManager.state.spawnObstacle && firstSpawn[i] < 6 && !StateManager.state.reversedDeathCondition)
                     {
-                        int itemToSpawn;
-                        if (StateManager.state.reversedControl) {
-                            itemToSpawn = 1;
-                        }
-                        else if (StateManager.state.reversedDeathCondition)
-                        {
-                            itemToSpawn = 0;
-                        }
-                        else
-                        {
-                            itemToSpawn = Random.Range(0, 2);
-                        }
+                        int itemToSpawn = randomItem();
                         GameObject item = Instantiate(reverse[itemToSpawn], GameManager.gameManager.plateExits[i].transform);
                         if (firstSpawn[i] > 3) item.transform.localPosition = new Vector2(0f, -3f);
                         else item.transform.localPosition = new Vector2(0f, 3f);
                         StateManager.state.spawnObstacle = false;
-                    } 
+                    }
+                    else if(StateManager.state.spawnObstacle && firstSpawn[i] > 5)
+                    {
+                        int itemToSpawn = randomItem();
+                        GameObject item = Instantiate(reverse[itemToSpawn], GameManager.gameManager.plateExits[i].transform);
+                        if (firstSpawn[i] < 8) item.transform.localPosition = new Vector2(0f, -3f);
+                        else item.transform.localPosition = new Vector2(0f, 3f);
+                        StateManager.state.spawnObstacle = false;
+                    }
                 }
             }
         }
+    }
+
+    int randomItem()
+    {
+        if (StateManager.state.reversedControl && StateManager.state.reversedDeathCondition)
+            return Random.Range(0, 2);
+        else if (StateManager.state.reversedControl)
+            return 1;
+        else if (StateManager.state.reversedDeathCondition)
+            return 0;
+        else
+            return Random.Range(0, 2);
     }
 }

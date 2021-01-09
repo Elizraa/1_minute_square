@@ -35,10 +35,9 @@ public class PlayerControl : MonoBehaviour
             }
             if (StateManager.state.nextInputAbleReverse)
             {
-                StateManager.state.nextInputAbleReverse = false;
-                Debug.Log(GameManager.gameManager.currentPlate.tag);
                 StateManager.state.reversedDeathCondition = true;
             }
+            else StateManager.state.reversedDeathCondition = false;
 
         }
     }
@@ -94,8 +93,8 @@ public class PlayerControl : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.transform.name == "ReverseControl(Clone)") StateManager.state.reversedControl = true;
-        else if (col.transform.name == "ReverseDeath(Clone)") StateManager.state.nextInputAbleReverse = true;
+        if (col.transform.name == "ReverseControl(Clone)") StateManager.state.reversedControl = !StateManager.state.reversedControl;
+        else if (col.transform.name == "ReverseDeath(Clone)") StateManager.state.nextInputAbleReverse = !StateManager.state.nextInputAbleReverse;
         Destroy(col.gameObject);
     }
 }

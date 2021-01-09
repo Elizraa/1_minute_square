@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -9,17 +10,24 @@ public class GameManager : MonoBehaviour
     public PlateSpawner plateSpawner;
     [HideInInspector]
     public GameObject[] plateExits = new GameObject[4];
-    public GameObject currentPlate;
+    public GameObject currentPlate, infoCanvas, retryCanvas, liveText, loseText;
     public Text scoreText;
     // Start is called before the first frame update
     void Awake()
     {
         if (gameManager == null) gameManager = this;
+        retryCanvas.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(StateManager.state.score == 1)
+        {
+            Destroy(liveText);
+            Destroy(loseText);
+            Destroy(infoCanvas);
+        }
     }
 
     public void setCurrent(int current)
@@ -42,18 +50,28 @@ public class GameManager : MonoBehaviour
     {
         if (!StateManager.state.reversedDeathCondition && GameManager.gameManager.plateExits[current].CompareTag("BlackUp"))
         {
-            StateManager.state.enableInput = false;
+            loseGame();
             return;
         }
         else if (StateManager.state.reversedDeathCondition && GameManager.gameManager.plateExits[current].CompareTag("WhiteUp"))
         {
-            StateManager.state.enableInput = false;
+            loseGame();
             return;
         }
         scoreText.text = (++StateManager.state.score).ToString();
         if (StateManager.state.score == 10) StateManager.state.spawnFour = true;
         else if (StateManager.state.score == 20) StateManager.state.spawnMoreVarians = true;
-        else if (StateManager.state.score == 30) StateManager.state.spawnObstacle = true;
-        else if (StateManager.state.score == 40) StateManager.state.spawnObstacle = true;
+        else if (StateManager.state.score == 30 || StateManager.state.score == 40|| StateManager.state.score == 50|| StateManager.state.score == 60) 
+            StateManager.state.spawnObstacle = true;
+    }
+    public void loseGame()
+    {
+        StateManager.state.startTimer = false;
+        StateManager.state.enableInput = false;
+        retryCanvas.SetActive(true);
+    }
+    public void retryGame()
+    {
+        SceneManager.LoadScene(0);
     }
 }

@@ -21,8 +21,7 @@ public class ScoreAndItem : MonoBehaviour
             totalTime -= Time.deltaTime;
             if(totalTime < 0)
             {
-                StateManager.state.startTimer = false;
-                StateManager.state.enableInput = false;
+                GameManager.gameManager.loseGame();
                 return;
             }
             UpdateLevelTimer(totalTime);
@@ -40,6 +39,6 @@ public class ScoreAndItem : MonoBehaviour
             minutes += 1;
         }
 
-        timer.text = minutes.ToString("0") + ":" + seconds.ToString("00");
+        timer.text = minutes.ToString("00") + ":" + seconds.ToString("00");
     }
 }
