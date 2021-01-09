@@ -8,6 +8,7 @@ public class StateManager : MonoBehaviour
     public bool spawnFour,spawnCoins,spawnObstacle,reversedControl,reversedDeathCondition, nextInputAbleReverse, spawnMoreVarians, startTimer;
     public bool enableInput = true;
     public int score = 0;
+    public string swipeDirection;
     // Start is called before the first frame update
     void Awake()
     {

@@ -46,7 +46,7 @@ ParticleSystem:
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
-  looping: 0
+  looping: 1
   prewarm: 0
   playOnAwake: 0
   useUnscaledTime: 0
@@ -284,7 +284,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.3
+      scalar: 0.2
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -4898,7 +4898,7 @@ Transform:
   m_GameObject: {fileID: 2355747990996930473}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.255, y: 0.31, z: 354.11758}
-  m_LocalScale: {x: 1.1708834, y: 1.1708834, z: 1.1708834}
+  m_LocalScale: {x: 0.95, y: 0.95, z: 1}
   m_Children:
   - {fileID: 2355747991497190408}
   - {fileID: 1706309981}

@@ -11,12 +11,18 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public GameObject[] plateExits = new GameObject[4];
     public GameObject currentPlate, infoCanvas, retryCanvas, liveText, loseText;
-    public Text scoreText;
+    public Text scoreText, finalScore, highScore;
     // Start is called before the first frame update
     void Awake()
     {
         if (gameManager == null) gameManager = this;
         retryCanvas.SetActive(false);
+    }
+
+    private void Start()
+    {
+        if(!PlayerPrefs.HasKey("highScore"))
+            PlayerPrefs.SetInt("highScore", 0);
     }
 
     // Update is called once per frame
@@ -27,6 +33,15 @@ public class GameManager : MonoBehaviour
             Destroy(liveText);
             Destroy(loseText);
             Destroy(infoCanvas);
+        }
+
+        if (!StateManager.state.enableInput)
+        {
+            if (StateManager.state.score > PlayerPrefs.GetInt("highScore")){
+                PlayerPrefs.SetInt("highScore", StateManager.state.score);
+            }
+            finalScore.text = "Final Score: "+ StateManager.state.score.ToString();
+            highScore.text = "Your Highscore: " + PlayerPrefs.GetInt("highScore").ToString();
         }
     }
 
