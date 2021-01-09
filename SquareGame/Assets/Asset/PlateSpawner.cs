@@ -48,7 +48,7 @@ public class PlateSpawner : MonoBehaviour
                 {
                     int[] temp = { Random.Range(2, 6), Random.Range(2, 6), Random.Range(6, 10), Random.Range(6, 10) };
                     firstSpawn = temp;
-                    if (StateManager.state.score > 30) firstSpawn[1] = Random.Range(6, 10);
+                    if (StateManager.state.score > 29) firstSpawn[1] = Random.Range(6, 10);
                 }
                 else
                 {
@@ -73,7 +73,7 @@ public class PlateSpawner : MonoBehaviour
                         else item.transform.localPosition = new Vector2(0f, 3f);
                         StateManager.state.spawnObstacle = false;
                     }
-                    else if(StateManager.state.spawnObstacle && firstSpawn[i] > 5)
+                    else if(StateManager.state.spawnObstacle && firstSpawn[i] > 5 && StateManager.state.reversedDeathCondition)
                     {
                         int itemToSpawn = randomItem();
                         GameObject item = Instantiate(reverse[itemToSpawn], GameManager.gameManager.plateExits[i].transform);

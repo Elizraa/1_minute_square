@@ -40,6 +40,10 @@ public class PlayerControl : MonoBehaviour
             else StateManager.state.reversedDeathCondition = false;
 
         }
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.Space)) GameManager.gameManager.retryGame();
+        }
     }
 
     void moveRight()
@@ -47,10 +51,10 @@ public class PlayerControl : MonoBehaviour
         particle.transform.localRotation = Quaternion.Euler(0, 0, -272.28f);
         particle.transform.localPosition = new Vector2(-0.44f, -0.41f);
         particleSystem.Play();
-        transform.position = new Vector3(transform.position.x+2.35f, transform.position.y, transform.position.z);
+        transform.position = new Vector3(transform.position.x+2.2f, transform.position.y, transform.position.z);
         for(int i = 0; i < 4; i++)
         {
-            GameManager.gameManager.plateSpawner.postitionToSpawn[i] += new Vector3(2.35f,0);
+            GameManager.gameManager.plateSpawner.postitionToSpawn[i] += new Vector3(2.2f,0);
         }
         GameManager.gameManager.setCurrent(0);
     }
@@ -59,10 +63,10 @@ public class PlayerControl : MonoBehaviour
         particle.transform.localRotation = Quaternion.Euler(0, 0, 357.36f);
         particle.transform.localPosition = new Vector2(0.44f, -0.41f);
         particleSystem.Play();
-        transform.position = new Vector3(transform.position.x-2.35f, transform.position.y, transform.position.z);
+        transform.position = new Vector3(transform.position.x-2.2f, transform.position.y, transform.position.z);
         for(int i = 0; i < 4; i++)
         {
-            GameManager.gameManager.plateSpawner.postitionToSpawn[i] -= new Vector3(2.35f, 0);
+            GameManager.gameManager.plateSpawner.postitionToSpawn[i] -= new Vector3(2.2f, 0);
         }
         GameManager.gameManager.setCurrent(1);
     }
@@ -71,10 +75,10 @@ public class PlayerControl : MonoBehaviour
         particle.transform.localRotation = Quaternion.Euler(0, 92, -482.7f);
         particle.transform.localPosition = new Vector2(0f, -0.41f);
         particleSystem.Play();
-        transform.position = new Vector3(transform.position.x, transform.position.y+1.78f, transform.position.z);
+        transform.position = new Vector3(transform.position.x, transform.position.y+1.5f, transform.position.z);
         for (int i = 0; i < 4; i++)
         {
-            GameManager.gameManager.plateSpawner.postitionToSpawn[i] += new Vector3(0, 1.78f);
+            GameManager.gameManager.plateSpawner.postitionToSpawn[i] += new Vector3(0, 1.5f);
         }
         GameManager.gameManager.setCurrent(2);
     }
@@ -83,10 +87,10 @@ public class PlayerControl : MonoBehaviour
         particle.transform.localRotation = Quaternion.Euler(0, 92, -482.7f);
         particle.transform.localPosition = new Vector2(0f, -0.41f);
         particleSystem.Play();
-        transform.position = new Vector3(transform.position.x, transform.position.y-1.78f, transform.position.z);
+        transform.position = new Vector3(transform.position.x, transform.position.y-1.5f, transform.position.z);
         for(int i = 0; i < 4; i++)
         {
-            GameManager.gameManager.plateSpawner.postitionToSpawn[i] -= new Vector3(0, 1.78f);
+            GameManager.gameManager.plateSpawner.postitionToSpawn[i] -= new Vector3(0, 1.5f);
         }
         GameManager.gameManager.setCurrent(3);
     }
