@@ -6,10 +6,15 @@ public class PlayerControl : MonoBehaviour
 {
     public GameObject particle;
     ParticleSystem particleSystem;
+    AudioSource audio;
+    public AudioClip itemSound;
+    public AudioClip moveSound;
+
     // Start is called before the first frame update
     void Start()
     {
         particleSystem = particle.GetComponent<ParticleSystem>();
+        audio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -52,6 +57,7 @@ public class PlayerControl : MonoBehaviour
         StateManager.state.swipeDirection = "";
         particle.transform.localRotation = Quaternion.Euler(0, 0, -272.28f);
         particle.transform.localPosition = new Vector2(-0.44f, -0.41f);
+        audio.PlayOneShot(moveSound);
         particleSystem.Play();
         transform.position = new Vector3(transform.position.x+2.2f, transform.position.y, transform.position.z);
         for(int i = 0; i < 4; i++)
@@ -66,6 +72,7 @@ public class PlayerControl : MonoBehaviour
         particle.transform.localRotation = Quaternion.Euler(0, 0, 357.36f);
         particle.transform.localPosition = new Vector2(0.44f, -0.41f);
         particleSystem.Play();
+        audio.PlayOneShot(moveSound);
         transform.position = new Vector3(transform.position.x-2.2f, transform.position.y, transform.position.z);
         for(int i = 0; i < 4; i++)
         {
@@ -78,6 +85,7 @@ public class PlayerControl : MonoBehaviour
         StateManager.state.swipeDirection = "";
         particle.transform.localRotation = Quaternion.Euler(0, 92, -482.7f);
         particle.transform.localPosition = new Vector2(0f, -0.41f);
+        audio.PlayOneShot(moveSound);
         particleSystem.Play();
         transform.position = new Vector3(transform.position.x, transform.position.y+1.5f, transform.position.z);
         for (int i = 0; i < 4; i++)
@@ -91,6 +99,7 @@ public class PlayerControl : MonoBehaviour
         StateManager.state.swipeDirection = "";
         particle.transform.localRotation = Quaternion.Euler(0, 92, -482.7f);
         particle.transform.localPosition = new Vector2(0f, -0.41f);
+        audio.PlayOneShot(moveSound);
         particleSystem.Play();
         transform.position = new Vector3(transform.position.x, transform.position.y-1.5f, transform.position.z);
         for(int i = 0; i < 4; i++)
@@ -107,6 +116,8 @@ public class PlayerControl : MonoBehaviour
         particle.transform.localRotation = Quaternion.Euler(0f, 90.67f, -632.9f);
         particle.transform.localPosition = Vector2.zero;
         particleSystem.Play();
+        audio.PlayOneShot(itemSound);
         Destroy(col.gameObject);
+
     }
 }

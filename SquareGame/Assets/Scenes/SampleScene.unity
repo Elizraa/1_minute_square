@@ -673,7 +673,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Collectibles
+  m_Text: Cursed Items
 --- !u!222 &551900128
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2546,25 +2546,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1706309980, guid: 0d1cf7fb23d08254e93210201df46026, type: 3}
-      propertyPath: m_Name
-      value: Particle System Move
-      objectReference: {fileID: 0}
     - target: {fileID: 1706309983, guid: 0d1cf7fb23d08254e93210201df46026, type: 3}
       propertyPath: CollisionModule.plane0
       value: 
       objectReference: {fileID: 142824105}
-    - target: {fileID: 1706309983, guid: 0d1cf7fb23d08254e93210201df46026, type: 3}
-      propertyPath: looping
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2355747990996930473, guid: 0d1cf7fb23d08254e93210201df46026, type: 3}
       propertyPath: m_Name
       value: PlayerWhite
-      objectReference: {fileID: 0}
-    - target: {fileID: 2355747990996930474, guid: 0d1cf7fb23d08254e93210201df46026, type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2355747990996930475, guid: 0d1cf7fb23d08254e93210201df46026, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2609,10 +2597,6 @@ PrefabInstance:
     - target: {fileID: 2355747990996930475, guid: 0d1cf7fb23d08254e93210201df46026, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2355747991497190409, guid: 0d1cf7fb23d08254e93210201df46026, type: 3}
-      propertyPath: m_SortingOrder
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d1cf7fb23d08254e93210201df46026, type: 3}
