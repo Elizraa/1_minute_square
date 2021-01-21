@@ -9,7 +9,7 @@ public class PlayerControl : MonoBehaviour
     AudioSource audio;
     public AudioClip itemSound;
     public AudioClip moveSound;
-
+    public GameObject reverseControl, reverseDeath;
     // Start is called before the first frame update
     void Start()
     {
@@ -111,8 +111,16 @@ public class PlayerControl : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.transform.name == "ReverseControl(Clone)") StateManager.state.reversedControl = !StateManager.state.reversedControl;
-        else if (col.transform.name == "ReverseDeath(Clone)") StateManager.state.nextInputAbleReverse = !StateManager.state.nextInputAbleReverse;
+        if (col.transform.name == "ReverseControl(Clone)")
+        {
+            reverseControl.SetActive(!reverseControl.activeSelf);
+            StateManager.state.reversedControl = !StateManager.state.reversedControl;
+        }
+        else if (col.transform.name == "ReverseDeath(Clone)")
+        {
+            reverseDeath.SetActive(!reverseDeath.activeSelf);
+            StateManager.state.nextInputAbleReverse = !StateManager.state.nextInputAbleReverse;
+        }
         particle.transform.localRotation = Quaternion.Euler(0f, 90.67f, -632.9f);
         particle.transform.localPosition = Vector2.zero;
         particleSystem.Play();
